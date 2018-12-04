@@ -1,33 +1,57 @@
-@mixin rotate {
-  transform: rotate(15deg);
+// Mixins
+// --------------------------
+
+@mixin fa-icon {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -.125em;
 }
 
-@mixin sidebar-icons {
-  .nav-item {
-    &:last-child {
-      margin-bottom: 1rem;
-    }
-    .nav-link {
-      text-align: center;
-      padding: 0.75rem 1rem;
-      width: $sidebar-collapsed-width;
-      span {
-        font-size: 0.65rem;
-        display: block;
-      }
-    }
-    .dropdown-menu {
-      position: absolute !important;
-      transform: none !important;
-      left: calc(#{$sidebar-collapsed-width} + 0.5rem) !important;
-      margin: 0;
-      &.dropup {
-        bottom: 0;
-        top: auto !important;
-      }
-    }
-    &.dropdown .dropdown-toggle::after {
-      display: none;
-    }
+@mixin fa-icon-rotate($degrees, $rotation) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation})";
+  transform: rotate($degrees);
+}
+
+@mixin fa-icon-flip($horiz, $vert, $rotation) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation}, mirror=1)";
+  transform: scale($horiz, $vert);
+}
+
+
+// Only display content to screen readers. A la Bootstrap 4.
+//
+// See: http://a11yproject.com/posts/how-to-hide-content/
+
+@mixin sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+//
+// Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+//
+// Credit: HTML5 Boilerplate
+
+@mixin sr-only-focusable {
+  &:active,
+  &:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
   }
 }
