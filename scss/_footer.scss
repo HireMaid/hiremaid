@@ -1,26 +1,27 @@
-// Styling for the footer
-footer {
-    padding: 25px 0;
-    text-align: center;
-    color: fade-out(white, .7);
-    background-color: $gray-darker;
-    p {
-        font-size: 12px;
-        margin: 0;
+footer.sticky-footer {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - #{$sidebar-collapsed-width});
+  height: $sticky-footer-height;
+  background-color: $gray-200;
+  .copyright {
+    line-height: 1;
+    font-size: 0.8rem;
+  }
+  @media (min-width: 768px) {
+    width: calc(100% - #{$sidebar-base-width});
+  }
+}
+
+body.sidebar-toggled {
+  footer.sticky-footer {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    footer.sticky-footer {
+      width: calc(100% - #{$sidebar-collapsed-width});
     }
-    ul {
-        margin-bottom: 0;
-        li {
-            a {
-                font-size: 12px;
-                color: fade-out(white, .7);
-                &:hover,
-                &:focus,
-                &:active,
-                &.active {
-                    text-decoration: none;
-                }
-            }
-        }
-    }
+  }
 }
